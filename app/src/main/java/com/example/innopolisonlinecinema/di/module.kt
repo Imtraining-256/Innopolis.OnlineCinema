@@ -4,6 +4,7 @@ import com.example.innopolisonlinecinema.data.api.MoviesApi
 import com.example.innopolisonlinecinema.data.api.MoviesRemoteSource
 import com.example.innopolisonlinecinema.data.api.MoviesRepository
 import com.example.innopolisonlinecinema.data.api.MoviesRepositoryImpl
+import com.example.innopolisonlinecinema.domain.MovieInteractor
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -38,5 +39,9 @@ val appModule = module {
 
     single<MoviesRepository> {
         MoviesRepositoryImpl(get<MoviesRemoteSource>())
+    }
+
+    single<MovieInteractor> {
+        MovieInteractor(get<MoviesRepository>())
     }
 }
