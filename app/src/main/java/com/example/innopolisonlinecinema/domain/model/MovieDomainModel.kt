@@ -1,6 +1,6 @@
 package com.example.innopolisonlinecinema.domain.model
 
-class MovieDomainModel(
+data class MovieDomainModel(
     val genres: List<MovieGenreDomainModel>,
     val originalTitle: String,
     val overview: String,
