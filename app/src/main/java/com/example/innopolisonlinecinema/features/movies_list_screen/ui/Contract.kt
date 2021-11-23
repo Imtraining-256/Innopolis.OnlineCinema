@@ -10,12 +10,11 @@ data class ViewState(
 )
 
 sealed class UIEvent : Event {
-    object GetMovies : UIEvent()
     data class OnMovieClick(val movie: MovieDomainModel) : UIEvent()
 }
 
 sealed class DataEvent : Event {
-    object OnLoadData : DataEvent()
+    object GetMovies : DataEvent()
     data class SuccessMoviesRequest(val movies: List<MovieDomainModel>) : DataEvent()
     data class ErrorMoviesRequest(val errorMessage: String) : DataEvent()
 }
