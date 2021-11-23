@@ -6,6 +6,7 @@ import com.example.innopolisonlinecinema.domain.model.MovieDomainModel
 data class ViewState(
     val movies: List<MovieDomainModel>,
     val errorMessage: String?,
+    val isLoad: Boolean
 )
 
 sealed class UIEvent : Event {
@@ -14,6 +15,7 @@ sealed class UIEvent : Event {
 }
 
 sealed class DataEvent : Event {
+    object OnLoadData : DataEvent()
     data class SuccessMoviesRequest(val movies: List<MovieDomainModel>) : DataEvent()
     data class ErrorMoviesRequest(val errorMessage: String) : DataEvent()
 }
