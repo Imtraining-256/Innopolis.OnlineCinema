@@ -5,6 +5,11 @@ import com.example.innopolisonlinecinema.base.Event
 import com.example.innopolisonlinecinema.domain.MovieInteractor
 
 class MoviesListViewModel(private val interactor: MovieInteractor) : BaseViewModel<ViewState>() {
+
+    init {
+        processUiEvent(DataEvent.GetMovies)
+    }
+
     override fun initialViewState(): ViewState {
         return ViewState(movies = listOf(), errorMessage = null, isLoad = false)
     }
@@ -14,7 +19,7 @@ class MoviesListViewModel(private val interactor: MovieInteractor) : BaseViewMod
             is UIEvent.OnMovieClick -> {
                 TODO()
             }
-            is UIEvent.GetMovies -> {
+            is DataEvent.GetMovies -> {
                 interactor.getMovies().fold(
                     onSuccess = {
                         processDataEvent(DataEvent.SuccessMoviesRequest(it))
