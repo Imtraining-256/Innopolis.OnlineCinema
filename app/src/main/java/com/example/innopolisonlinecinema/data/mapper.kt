@@ -18,6 +18,7 @@ fun Result.toDomain(): MovieDomainModel {
     }
 
     return MovieDomainModel(
+        id = id,
         genres = genres,
         originalTitle = originalTitle,
         overview = overview,
