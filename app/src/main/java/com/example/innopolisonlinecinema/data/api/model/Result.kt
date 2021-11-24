@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName
  * A data class for film
  */
 data class Result(
+    @SerializedName("id")
+    val id: Int,
     @SerializedName("genres")
     val genres: List<Genre>,
     @SerializedName("original_title")
