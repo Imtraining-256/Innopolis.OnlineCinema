@@ -1,0 +1,3 @@
+package com.example.innopolisonlinecinema.features.movie_item_screen
+
+class MovieItemCardViewModel
