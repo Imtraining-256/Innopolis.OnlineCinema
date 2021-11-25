@@ -17,7 +17,7 @@ class MoviesListViewModel(private val interactor: MovieInteractor) : BaseViewMod
     override suspend fun reduce(event: Event, previousState: ViewState): ViewState? {
         when (event) {
             is UIEvent.OnMovieClick -> {
-                TODO()
+                processDataEvent(UIEvent.OnMovieClick(event.movie))
             }
             is DataEvent.GetMovies -> {
                 interactor.getMovies().fold(
