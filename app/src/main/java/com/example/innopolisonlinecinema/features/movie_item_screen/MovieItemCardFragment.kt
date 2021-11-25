@@ -5,7 +5,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.innopolisonlinecinema.R
 import com.example.innopolisonlinecinema.databinding.FragmentMovieItemCardBinding
 
-class MovieItemCardFragment : Fragment(R.layout.movie_item) {
+class MovieItemCardFragment : Fragment(R.layout.fragment_movie_item_card) {
     companion object {
         fun newInstance() = MovieItemCardFragment()
     }
