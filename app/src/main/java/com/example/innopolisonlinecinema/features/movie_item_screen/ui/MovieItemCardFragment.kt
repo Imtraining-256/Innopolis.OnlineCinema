@@ -1,4 +1,4 @@
-package com.example.innopolisonlinecinema.features.movie_item_screen
+package com.example.innopolisonlinecinema.features.movie_item_screen.ui
 
 import android.os.Bundle
 import android.view.View
