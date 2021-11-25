@@ -1,5 +1,9 @@
 package com.example.innopolisonlinecinema.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class MovieDomainModel(
     val id: Int,
     val genres: List<MovieGenreDomainModel>,
@@ -10,4 +14,4 @@ data class MovieDomainModel(
     val title: String,
     val video: String,
     val voteAverage: Double
-)
+) : Parcelable
