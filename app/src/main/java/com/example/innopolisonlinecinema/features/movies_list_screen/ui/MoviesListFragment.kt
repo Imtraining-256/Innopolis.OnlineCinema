@@ -48,7 +48,7 @@ class MoviesListFragment : Fragment(R.layout.fragment_movies_list) {
         when (event) {
             is SingleEvent.OpenMovieItemCard -> {
                 parentFragmentManager.beginTransaction()
-                    .add(R.id.clMoviesList, MovieItemCardFragment())
+                    .add(R.id.clMoviesList, MovieItemCardFragment.newInstance(event.movie))
                     .addToBackStack("movies").commit()
             }
         }
