@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.innopolisonlinecinema.R
+import com.example.innopolisonlinecinema.base.formatDate
 import com.example.innopolisonlinecinema.databinding.FragmentMovieItemCardBinding
 import com.example.innopolisonlinecinema.domain.model.MovieDomainModel
 
@@ -39,6 +41,14 @@ class MovieItemCardFragment : Fragment(R.layout.fragment_movie_item_card) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             tvMovieTitle.text = currentMovie.title
+            tvGeneres.text = currentMovie.genres.joinToString { genere -> genere.genre }
+            tvMovieRating.text = currentMovie.voteAverage.toString()
+            tvMovieDescription.text = currentMovie.overview
+            tvMovieReleaseDate.text = formatDate(currentMovie.releaseDate)
+            context?.let {
+                Glide.with(it).load(currentMovie.posterPath).into(ivPoster)
+            }
+
         }
     }
 }
