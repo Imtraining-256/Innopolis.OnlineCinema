@@ -2,7 +2,6 @@ package com.example.innopolisonlinecinema.features.movies_list_screen.ui
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -10,6 +9,7 @@ import com.example.innopolisonlinecinema.R
 import com.example.innopolisonlinecinema.base.setAdapterAndCleanupOnDetachFromWindow
 import com.example.innopolisonlinecinema.base.setData
 import com.example.innopolisonlinecinema.databinding.FragmentMoviesListBinding
+import com.example.innopolisonlinecinema.features.movie_item_screen.ui.MovieItemCardFragment
 import com.example.innopolisonlinecinema.features.movies_list_screen.ui.adapter.movieAdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -47,11 +47,9 @@ class MoviesListFragment : Fragment(R.layout.fragment_movies_list) {
     private fun onSingleEvent(event: SingleEvent) {
         when (event) {
             is SingleEvent.OpenMovieItemCard -> {
-                Toast.makeText(
-                    requireContext(),
-                    "Open ${event.movie.originalTitle}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                parentFragmentManager.beginTransaction()
+                    .add(R.id.clMoviesList, MovieItemCardFragment())
+                    .addToBackStack("movies").commit()
             }
         }
     }
