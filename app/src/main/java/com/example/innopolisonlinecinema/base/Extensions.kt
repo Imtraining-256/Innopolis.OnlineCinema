@@ -3,6 +3,9 @@ package com.example.innopolisonlinecinema.base
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AbsDelegationAdapter
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun <T> AbsDelegationAdapter<T>.setData(data: T) {
     items = data
@@ -20,4 +23,14 @@ fun RecyclerView.setAdapterAndCleanupOnDetachFromWindow(recyclerViewAdapter: Rec
         override fun onViewAttachedToWindow(v: View?) {
         }
     })
+}
+
+fun formatDate(date: String): String {
+    val parser = SimpleDateFormat("yyyy-MM-dd", Locale.ROOT)
+    val formatter = SimpleDateFormat("yyyy", Locale.ROOT)
+    return try {
+        formatter.format(parser.parse(date) ?: "")
+    } catch (e: ParseException) {
+        date
+    }
 }
