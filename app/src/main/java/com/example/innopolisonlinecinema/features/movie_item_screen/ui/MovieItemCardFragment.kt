@@ -13,15 +13,15 @@ import com.example.innopolisonlinecinema.domain.model.MovieDomainModel
 class MovieItemCardFragment : Fragment(R.layout.fragment_movie_item_card) {
     private var _binding: FragmentMovieItemCardBinding? = null
     private val binding get() = _binding!!
-
     private val currentMovie: MovieDomainModel by lazy {
-        requireArguments().getParcelable("movie")!!
+        requireArguments().getParcelable(KEY_MOVIE)!!
     }
 
     companion object {
+        private const val KEY_MOVIE = "movie"
         fun newInstance(movie: MovieDomainModel): MovieItemCardFragment {
             return MovieItemCardFragment().apply {
-                arguments = bundleOf(Pair("movie", movie))
+                arguments = bundleOf(Pair(KEY_MOVIE, movie))
             }
         }
     }
