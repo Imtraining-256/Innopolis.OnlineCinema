@@ -2,9 +2,12 @@ package com.example.innopolisonlinecinema.features.movies_list_screen.ui
 
 import com.example.innopolisonlinecinema.base.BaseViewModel
 import com.example.innopolisonlinecinema.base.Event
+import com.example.innopolisonlinecinema.base.SingleLiveEvent
 import com.example.innopolisonlinecinema.domain.MovieInteractor
 
 class MoviesListViewModel(private val interactor: MovieInteractor) : BaseViewModel<ViewState>() {
+
+    val singleLiveEventEvent = SingleLiveEvent<SingleEvent>()
 
     init {
         processUiEvent(DataEvent.GetMovies)
@@ -16,9 +19,6 @@ class MoviesListViewModel(private val interactor: MovieInteractor) : BaseViewMod
 
     override suspend fun reduce(event: Event, previousState: ViewState): ViewState? {
         when (event) {
-            is UIEvent.OnMovieClick -> {
-                processDataEvent(UIEvent.OnMovieClick(event.movie))
-            }
             is DataEvent.GetMovies -> {
                 interactor.getMovies().fold(
                     onSuccess = {
@@ -28,6 +28,10 @@ class MoviesListViewModel(private val interactor: MovieInteractor) : BaseViewMod
                         processDataEvent(DataEvent.ErrorMoviesRequest(it.localizedMessage ?: ""))
                     }
                 )
+            }
+
+            is UIEvent.OnMovieClick -> {
+                singleLiveEventEvent.value = SingleEvent.OpenMovieItemCard(movie = event.movie)
             }
 
             is DataEvent.SuccessMoviesRequest -> {

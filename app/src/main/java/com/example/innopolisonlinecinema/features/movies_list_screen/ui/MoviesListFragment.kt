@@ -2,6 +2,7 @@ package com.example.innopolisonlinecinema.features.movies_list_screen.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -27,6 +28,7 @@ class MoviesListFragment : Fragment(R.layout.fragment_movies_list) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
+        viewModel.singleLiveEventEvent.observe(viewLifecycleOwner, ::onSingleEvent)
     }
 
     private fun initAdapter() {
@@ -40,5 +42,17 @@ class MoviesListFragment : Fragment(R.layout.fragment_movies_list) {
 
     private fun render(viewState: ViewState) {
         movieAdapter.setData(viewState.movies)
+    }
+
+    private fun onSingleEvent(event: SingleEvent) {
+        when (event) {
+            is SingleEvent.OpenMovieItemCard -> {
+                Toast.makeText(
+                    requireContext(),
+                    "Open ${event.movie.originalTitle}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
 }
