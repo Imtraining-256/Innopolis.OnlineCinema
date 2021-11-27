@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.innopolisonlinecinema"
-        minSdk 21
+        minSdk 23
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -25,11 +25,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     buildFeatures {
         viewBinding true
@@ -46,7 +46,7 @@ dependencies {
     def glide_version = "4.12.0"
     def adapter_delegate_version = "4.3.0"
     def view_binding_delegate_version = "1.5.1-beta01"
-    def exoplayer_version ="2.15.1"
+    def exoplayer_version ="2.16.1"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
