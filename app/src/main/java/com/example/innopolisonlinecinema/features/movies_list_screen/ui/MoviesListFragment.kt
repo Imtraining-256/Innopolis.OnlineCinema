@@ -9,7 +9,6 @@ import com.example.innopolisonlinecinema.R
 import com.example.innopolisonlinecinema.base.setAdapterAndCleanupOnDetachFromWindow
 import com.example.innopolisonlinecinema.base.setData
 import com.example.innopolisonlinecinema.databinding.FragmentMoviesListBinding
-import com.example.innopolisonlinecinema.features.movie_item_screen.ui.MovieItemCardFragment
 import com.example.innopolisonlinecinema.features.movies_list_screen.ui.adapter.movieAdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -30,7 +29,6 @@ class MoviesListFragment : Fragment(R.layout.fragment_movies_list) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
-        viewModel.singleLiveEventEvent.observe(viewLifecycleOwner, ::onSingleEvent)
     }
 
     private fun initAdapter() {
@@ -44,15 +42,5 @@ class MoviesListFragment : Fragment(R.layout.fragment_movies_list) {
 
     private fun render(viewState: ViewState) {
         movieAdapter.setData(viewState.movies)
-    }
-
-    private fun onSingleEvent(event: SingleEvent) {
-        when (event) {
-            is SingleEvent.OpenMovieItemCard -> {
-                parentFragmentManager.beginTransaction()
-                    .add(R.id.clMoviesList, MovieItemCardFragment.newInstance(event.movie))
-                    .addToBackStack("movies").commit()
-            }
-        }
     }
 }

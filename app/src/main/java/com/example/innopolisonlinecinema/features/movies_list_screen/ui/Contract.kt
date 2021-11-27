@@ -11,14 +11,11 @@ data class ViewState(
 
 sealed class UIEvent : Event {
     data class OnMovieClick(val movie: MovieDomainModel) : UIEvent()
+    data class OpenMovieItemCard(val movie: MovieDomainModel) : UIEvent()
 }
 
 sealed class DataEvent : Event {
     object GetMovies : DataEvent()
     data class SuccessMoviesRequest(val movies: List<MovieDomainModel>) : DataEvent()
     data class ErrorMoviesRequest(val errorMessage: String) : DataEvent()
-}
-
-sealed class SingleEvent : Event {
-    data class OpenMovieItemCard(val movie: MovieDomainModel) : SingleEvent()
 }

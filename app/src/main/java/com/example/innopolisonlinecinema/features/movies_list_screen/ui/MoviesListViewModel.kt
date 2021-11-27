@@ -2,13 +2,12 @@ package com.example.innopolisonlinecinema.features.movies_list_screen.ui
 
 import com.example.innopolisonlinecinema.base.BaseViewModel
 import com.example.innopolisonlinecinema.base.Event
-import com.example.innopolisonlinecinema.base.SingleLiveEvent
+import com.example.innopolisonlinecinema.base.navigation.Screens
 import com.example.innopolisonlinecinema.domain.MovieInteractor
+import com.github.terrakok.cicerone.Router
 
-class MoviesListViewModel(private val interactor: MovieInteractor) : BaseViewModel<ViewState>() {
-
-    val singleLiveEventEvent = SingleLiveEvent<SingleEvent>()
-
+class MoviesListViewModel(private val interactor: MovieInteractor, private val router: Router) :
+    BaseViewModel<ViewState>() {
     init {
         processDataEvent(DataEvent.GetMovies)
     }
@@ -31,7 +30,7 @@ class MoviesListViewModel(private val interactor: MovieInteractor) : BaseViewMod
             }
 
             is UIEvent.OnMovieClick -> {
-                singleLiveEventEvent.value = SingleEvent.OpenMovieItemCard(movie = event.movie)
+                router.navigateTo(Screens.movieItemCardScreen(event.movie))
             }
 
             is DataEvent.SuccessMoviesRequest -> {
