@@ -46,6 +46,7 @@ dependencies {
     def glide_version = "4.12.0"
     def adapter_delegate_version = "4.3.0"
     def view_binding_delegate_version = "1.5.1-beta01"
+    def exoplayer_version ="2.15.1"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
@@ -72,4 +73,8 @@ dependencies {
     implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:$adapter_delegate_version"
     // Kirich's viewBinding delegate
     implementation "com.github.kirich1409:viewbindingpropertydelegate:$view_binding_delegate_version"
+    // ExoPlayer
+    implementation "com.google.android.exoplayer:exoplayer-core:$exoplayer_version"
+    implementation "com.google.android.exoplayer:exoplayer-dash:$exoplayer_version"
+    implementation "com.google.android.exoplayer:exoplayer-ui:$exoplayer_version"
 }
