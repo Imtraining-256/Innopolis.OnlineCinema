@@ -46,7 +46,8 @@ dependencies {
     def glide_version = "4.12.0"
     def adapter_delegate_version = "4.3.0"
     def view_binding_delegate_version = "1.5.1-beta01"
-    def exoplayer_version ="2.16.1"
+    def exoplayer_version = "2.16.1"
+    def cicerone_version = "7.1"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
@@ -77,4 +78,7 @@ dependencies {
     implementation "com.google.android.exoplayer:exoplayer-core:$exoplayer_version"
     implementation "com.google.android.exoplayer:exoplayer-dash:$exoplayer_version"
     implementation "com.google.android.exoplayer:exoplayer-ui:$exoplayer_version"
+    // Cicerone
+    implementation "com.github.terrakok:cicerone:$cicerone_version"
+
 }
