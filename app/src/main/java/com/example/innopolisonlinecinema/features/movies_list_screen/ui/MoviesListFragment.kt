@@ -16,6 +16,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviesListFragment : Fragment(R.layout.fragment_movies_list) {
 
+    fun newInstance() = MoviesListFragment()
+
     private val binding: FragmentMoviesListBinding by viewBinding(FragmentMoviesListBinding::bind)
     private val viewModel: MoviesListViewModel by viewModel()
     private val movieAdapter by lazy(LazyThreadSafetyMode.NONE) {
