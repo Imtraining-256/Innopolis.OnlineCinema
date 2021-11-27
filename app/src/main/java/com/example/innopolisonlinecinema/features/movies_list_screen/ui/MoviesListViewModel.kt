@@ -10,7 +10,7 @@ class MoviesListViewModel(private val interactor: MovieInteractor) : BaseViewMod
     val singleLiveEventEvent = SingleLiveEvent<SingleEvent>()
 
     init {
-        processUiEvent(DataEvent.GetMovies)
+        processDataEvent(DataEvent.GetMovies)
     }
 
     override fun initialViewState(): ViewState {
