@@ -11,7 +11,6 @@ data class ViewState(
 
 sealed class UIEvent : Event {
     data class OnMovieClick(val movie: MovieDomainModel) : UIEvent()
-    data class OpenMovieItemCard(val movie: MovieDomainModel) : UIEvent()
 }
 
 sealed class DataEvent : Event {
