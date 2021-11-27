@@ -2,6 +2,7 @@ package com.example.innopolisonlinecinema
 
 import android.app.Application
 import com.example.innopolisonlinecinema.di.appModule
+import com.example.innopolisonlinecinema.features.movie_player_screen.di.exoPlayerModule
 import com.example.innopolisonlinecinema.features.movies_list_screen.di.moviesListModule
 import movieItemCardModule
 import org.koin.android.ext.koin.androidContext
@@ -15,7 +16,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(appModule, moviesListModule, movieItemCardModule)
+            modules(appModule, moviesListModule, movieItemCardModule, exoPlayerModule)
         }
     }
 }
