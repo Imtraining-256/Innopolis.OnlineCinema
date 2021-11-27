@@ -1,0 +1,3 @@
+package com.example.innopolisonlinecinema.features.movie_player_screen.ui
+
+class MoviePlayerViewModel
