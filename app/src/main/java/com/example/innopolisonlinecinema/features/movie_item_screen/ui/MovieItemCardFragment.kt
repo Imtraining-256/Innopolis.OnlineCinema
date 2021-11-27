@@ -11,6 +11,7 @@ import com.example.innopolisonlinecinema.R
 import com.example.innopolisonlinecinema.base.formatDate
 import com.example.innopolisonlinecinema.databinding.FragmentMovieItemCardBinding
 import com.example.innopolisonlinecinema.domain.model.MovieDomainModel
+import com.example.innopolisonlinecinema.features.movie_player_screen.ui.MoviePlayerFragment
 
 class MovieItemCardFragment : Fragment(R.layout.fragment_movie_item_card) {
     private var _binding: FragmentMovieItemCardBinding? = null
@@ -48,7 +49,11 @@ class MovieItemCardFragment : Fragment(R.layout.fragment_movie_item_card) {
             context?.let {
                 Glide.with(it).load(currentMovie.posterPath).into(ivPoster)
             }
-
+            btnPlay.setOnClickListener {
+                parentFragmentManager.beginTransaction()
+                    .add(R.id.clMoviesList, MoviePlayerFragment())
+                    .addToBackStack("card").commit()
+            }
         }
     }
 }
