@@ -7,6 +7,6 @@ data class ViewState(
     val movie: MovieDomainModel
 )
 
-sealed class UiEvent : Event {
-    data class OnPlayButtonListener(val movie: MovieDomainModel) : UiEvent()
+sealed class UIEvent : Event {
+    data class OnPlayButtonClick(val movie: MovieDomainModel) : UIEvent()
 }

@@ -1,25 +1,19 @@
 package com.example.innopolisonlinecinema.features.movie_item_screen.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.example.innopolisonlinecinema.R
 import com.example.innopolisonlinecinema.base.formatDate
 import com.example.innopolisonlinecinema.databinding.FragmentMovieItemCardBinding
 import com.example.innopolisonlinecinema.domain.model.MovieDomainModel
-import com.example.innopolisonlinecinema.features.movie_player_screen.ui.MoviePlayerFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class MovieItemCardFragment : Fragment(R.layout.fragment_movie_item_card) {
-    private var _binding: FragmentMovieItemCardBinding? = null
-    private val binding get() = _binding!!
-    private val currentMovie: MovieDomainModel by lazy {
-        requireArguments().getParcelable(KEY_MOVIE)!!
-    }
-
     companion object {
         private const val KEY_MOVIE = "movie"
         fun newInstance(movie: MovieDomainModel): MovieItemCardFragment {
@@ -29,14 +23,11 @@ class MovieItemCardFragment : Fragment(R.layout.fragment_movie_item_card) {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentMovieItemCardBinding.inflate(inflater, container, false)
-        return binding.root
+    private val binding: FragmentMovieItemCardBinding by viewBinding(FragmentMovieItemCardBinding::bind)
+    private val currentMovie: MovieDomainModel by lazy {
+        requireArguments().getParcelable(KEY_MOVIE)!!
     }
+    private val viewModel: MovieItemCardViewModel by viewModel { parametersOf(currentMovie) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,12 +41,7 @@ class MovieItemCardFragment : Fragment(R.layout.fragment_movie_item_card) {
                 Glide.with(it).load(currentMovie.posterPath).into(ivPoster)
             }
             btnPlay.setOnClickListener {
-                parentFragmentManager.beginTransaction()
-                    .add(
-                        android.R.id.content,
-                        MoviePlayerFragment.newInstance(movie = currentMovie)
-                    )
-                    .addToBackStack("card").commit()
+                viewModel.processUiEvent(UIEvent.OnPlayButtonClick(currentMovie))
             }
         }
     }
