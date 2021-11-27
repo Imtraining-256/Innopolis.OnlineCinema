@@ -5,6 +5,9 @@ import com.example.innopolisonlinecinema.data.api.MoviesRemoteSource
 import com.example.innopolisonlinecinema.data.api.MoviesRepository
 import com.example.innopolisonlinecinema.data.api.MoviesRepositoryImpl
 import com.example.innopolisonlinecinema.domain.MovieInteractor
+import com.github.terrakok.cicerone.Cicerone
+import com.github.terrakok.cicerone.NavigatorHolder
+import com.github.terrakok.cicerone.Router
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -43,5 +46,20 @@ val appModule = module {
 
     single<MovieInteractor> {
         MovieInteractor(get<MoviesRepository>())
+    }
+}
+
+val navigationModule = module {
+
+    single<Cicerone<Router>> {
+        Cicerone.create(Router())
+    }
+
+    single<NavigatorHolder> {
+        get<Cicerone<Router>>().getNavigatorHolder()
+    }
+
+    single<Router> {
+        get<Cicerone<Router>>().router
     }
 }
