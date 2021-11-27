@@ -51,7 +51,10 @@ class MovieItemCardFragment : Fragment(R.layout.fragment_movie_item_card) {
             }
             btnPlay.setOnClickListener {
                 parentFragmentManager.beginTransaction()
-                    .add(R.id.clMoviesList, MoviePlayerFragment())
+                    .add(
+                        android.R.id.content,
+                        MoviePlayerFragment.newInstance(movie = currentMovie)
+                    )
                     .addToBackStack("card").commit()
             }
         }
